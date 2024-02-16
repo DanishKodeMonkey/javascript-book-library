@@ -1,4 +1,7 @@
+// Library array
 const myLibrary = []
+
+//DOM library container
 const libCont = document.querySelector(".library-container")
 
 // add book modal
@@ -7,11 +10,12 @@ const dialog = document.getElementById("dialog")
 const submitBtn = dialog.querySelector("#submit")
 const cancelBtn = dialog.querySelector("#cancel")
 
-//fetch all relevant input objects
+//fetch all relevant input objects from modal
 const bookInp = dialog.querySelectorAll(
   "input[type = 'text'],[type = 'checkbox']"
 )
 
+// Modal buttons
 submitBtn.addEventListener("click", (e) => {
   // Prevent default server send behavior
   e.preventDefault()
@@ -40,73 +44,70 @@ function Book(title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
-  this.info = function () {
-    console.log(
-      `Book: ${this.title}, by ${this.author}, with ${this.pages} pages, is it read? ${this.read}`
-    )
-  }
 }
 
+// Main function to add book to library and DOM
 function addBookToLibrary(title, author, pages, read) {
+  // Create new book object through constructor, add to Array.
   let book = new Book(title, author, pages, read)
-
   myLibrary.push(book)
 
-  // Display updated array of books
+  //display updated array of books
   myLibrary.forEach((book) => {
-    //Check if book was already added to DOM
     if (book.addedToLib !== true) {
-      const div = document.createElement("div")
-      div.classList.add("book-card")
-      titleLabel = document.createElement("label")
-      titleLabel.classList.add("label")
-      titleLabel.setAttribute[("for", "title")]
-      titleLabel.textContent = "Book: "
-      const title = document.createElement("p")
-      title.classList.add("title")
-      title.textContent = book.title
-      titleLabel.appendChild(title)
-      authorLabel = document.createElement("label")
-      authorLabel.classList.add("label")
-      authorLabel.setAttribute[("for", "author")]
-      authorLabel.textContent = "By: "
-      const author = document.createElement("p")
-      author.classList.add("author")
-      author.textContent = book.author
-      authorLabel.appendChild(author)
-      pagesLabel = document.createElement("label")
-      pagesLabel.classList.add("label")
-      pagesLabel.setAttribute[("for", "pages")]
-      pagesLabel.textContent = "Pages: "
-      const pages = document.createElement("p")
-      pages.classList.add("pages")
-      pages.textContent = book.pages
-      pagesLabel.appendChild(pages)
-      const chkLabel = document.createElement("label")
-      chkLabel.setAttribute[("for", "readChk")]
-      chkLabel.classList.add("label")
-      chkLabel.textContent = "Read: "
-      const readChk = document.createElement("input")
-      readChk.setAttribute("type", "checkbox")
-      readChk.checked = book.read
-      chkLabel.appendChild(readChk)
+      const bookCard = createBookCard(book)
+      libCont.appendChild(bookCard)
 
-      // Add function to each book to remove itself
-      // from DOM and myLibrary
-      book["bookId"] = myLibrary.indexOf(book)
-      const delBtn = document.createElement("button")
-      delBtn.textContent = "Remove"
-      delBtn.addEventListener("click", (e) => {
-        myLibrary.splice(book.bookId, 1)
-        div.parentNode.removeChild(div)
-      })
-      div.append(titleLabel, authorLabel, pagesLabel, chkLabel, delBtn)
-      libCont.appendChild(div)
-
-      // Once book is added, set label on array entry.
-      // This way the same entries from the array aren't added twice.
-      // And books with matching titles can still exist.
-      book["addedToLib"] = true
+      // Once book is added to Library, set addedToLib to true
+      // this prevents deploying it to the DOM again.
+      book.addedToLib = true
     }
   })
+}
+
+// Function to create book card for each book entry
+function createBookCard(book) {
+  // Card container
+  const div = document.createElement("div")
+  div.classList.add("book-card")
+
+  // Function creates a label and paragraph
+  function createLabelAndElement(labelText, value, className) {
+    const label = document.createElement("label")
+    label.classList.add("label")
+    label.textContent = labelText
+
+    const para = document.createElement("p")
+    para.classList.add(className)
+    para.textContent = value
+
+    label.appendChild(para)
+    return label
+  }
+  // Append div 3 times, calling createLabelAndElement for each book.value
+  div.appendChild(createLabelAndElement("Book: ", book.title, "title"))
+  div.appendChild(createLabelAndElement("By: ", book.author, "author"))
+  div.appendChild(createLabelAndElement("Pages: ", book.pages, "pages"))
+
+  // Create element for checkbox, if book is read
+  const chkLabel = document.createElement("label")
+  chkLabel.setAttribute("for", "readChk")
+  chkLabel.classList.add("label")
+  chkLabel.textContent = "Read: "
+
+  const readChk = document.createElement("input")
+  readChk.setAttribute("type", "checkbox")
+  readChk.checked = book.read
+
+  // Button for deleting book from DOM and array
+  const delBtn = document.createElement("button")
+  delBtn.textContent = "Remove"
+  delBtn.addEventListener("click", (e) => {
+    myLibrary.splice(book.bookId, 1)
+    div.parentNode.removeChild(div)
+  })
+  div.appendChild(delBtn)
+
+  // Return finished book-card
+  return div
 }

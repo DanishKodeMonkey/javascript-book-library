@@ -67,8 +67,8 @@ p>button:hover{
     text-align: center;
     align-items: center;
     white-space: pre-line;
-    border-left: 2vw ridge #663f26;
-    border-right: 2vw ridge #663f26;
+    border-left: 1vw ridge #663f26;
+    border-right: 1vw ridge #663f26;
     box-shadow: 3px 3px 20px black;
     transition: 200ms ease-in-out;
     >.label{
