@@ -17,4 +17,4 @@ Later I will be adding some storage to save your choice of books!
 
 ### Check it out
 
-As always, check it out for youself [here!](https://kodemonkey.github.io/javascript-book-library/)
+As always, check it out for youself [here!](https://danishkodemonkey.github.io/javascript-book-library/)
