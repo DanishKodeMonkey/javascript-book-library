@@ -45,6 +45,14 @@ function Book(title, author, pages, read) {
   this.pages = pages
   this.read = read
 }
+// Add function to constructor prototype to toggle read state
+Book.prototype.toggleRead = function () {
+  if (this.read === true) {
+    this.read = false
+  } else {
+    this.read = true
+  }
+}
 
 // Main function to add book to library and DOM
 function addBookToLibrary(title, author, pages, read) {
@@ -98,6 +106,12 @@ function createBookCard(book) {
   const readChk = document.createElement("input")
   readChk.setAttribute("type", "checkbox")
   readChk.checked = book.read
+  // Trigger object prototype function on checkmarker click
+  readChk.addEventListener("click", () => {
+    book.toggleRead()
+  })
+  chkLabel.append(readChk)
+  div.appendChild(chkLabel)
 
   // Button for deleting book from DOM and array
   const delBtn = document.createElement("button")
