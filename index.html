@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="styles.css" />
+    <script
+      src="./script.js"
+      defer></script>
+    <title>Javascript Book Library</title>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <h1 class="title">Welcome to the library!</h1>
+        <h2 class="sub-title">Go ahead and store a book below!</h2>
+      </div>
+    </header>
+    <main>
+      <!-- dialog modal -->
+      <dialog id="dialog">
+        <form method="dialog">
+          <p>
+            <label for="dialog">Add a book:</label>
+          </p>
+          <p>
+            <label for="booktitle"
+              >Title:
+              <input
+                name="book-title"
+                id="book-title"
+                type="text"
+                required
+                autofocus />
+            </label>
+            <label for="bookauthor"
+              >Author:
+              <input
+                type="text"
+                name="book-author"
+                id="book-author"
+                required />
+            </label>
+            <label for="bookpages"
+              >Pages:
+              <input
+                type="text"
+                name="book-pages"
+                id="book-pages"
+                required />
+            </label>
+            <label for="bookread"
+              >Read:
+              <input
+                type="checkbox"
+                name="book-read"
+                id="book-read" />
+            </label>
+          </p>
+          <div>
+            <input
+              type="submit"
+              id="submit"
+              value="Add book" />
+            <input
+              type="submit"
+              id="cancel"
+              value="cancel" />
+          </div>
+        </form>
+      </dialog>
+      <p><button id="add-button">Add a book</button></p>
+      <!-- Library display -->
+      <div class="library-container"></div>
+    </main>
+  </body>
+</html>
