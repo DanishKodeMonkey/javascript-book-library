@@ -11,6 +11,10 @@ when you try to add a book, fill that out and the script will handle the form da
 put it through a constructor and add the object to an array, as well as create a nice book card on the
 shelf!
 
+## Update: Classes
+
+In an attempt to play around with javascript classes ( let's stay civil now! ) I made a branch that refactors the script to use classes instead of object function constructors.
+
 ### Coming soon
 
 Later I will be adding some storage to save your choice of books!

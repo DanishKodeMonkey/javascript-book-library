@@ -38,21 +38,38 @@ cancelBtn.addEventListener("click", (e) => {
   dialog.close()
 })
 
-// Constructor for individual books
+// Class constructor for individual books
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+  }
+  toggleRead() {
+    if (this.read === true) {
+      this.read = false
+    } else {
+      this.read = true
+    }
+  }
+}
+/* // Constructor for individual books
 function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
-  this.read = read
-}
-// Add function to constructor prototype to toggle read state
+  this.read = read 
+}*/
+/* // Add function to constructor prototype to toggle read state
 Book.prototype.toggleRead = function () {
   if (this.read === true) {
     this.read = false
   } else {
     this.read = true
   }
-}
+} */
 
 // Main function to add book to library and DOM
 function addBookToLibrary(title, author, pages, read) {
@@ -106,7 +123,7 @@ function createBookCard(book) {
   const readChk = document.createElement("input")
   readChk.setAttribute("type", "checkbox")
   readChk.checked = book.read
-  // Trigger object prototype function on checkmarker click
+  // Trigger object prototype function on checkmarker clickc
   readChk.addEventListener("click", () => {
     book.toggleRead()
   })
