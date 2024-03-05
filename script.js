@@ -97,7 +97,7 @@ function createBookCard(book) {
   div.classList.add("book-card")
 
   // Function creates a label and paragraph
-  function createLabelAndElement(labelText, value, className) {
+  function createLabelAncd dElement(labelText, value, className) {
     const label = document.createElement("label")
     label.classList.add("label")
     label.textContent = labelText
